@@ -1,321 +1,324 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz San Valentín ❤️</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz San Valentín ❤️</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
-        body {
-            background-color: #ffe4e1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Marryweather', serif;
-            overflow: hidden;
-            position: relative;
-        }
+    body {
+      background-color: #ffe4e1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Merriweather', serif;
+      overflow: hidden;
+      position: relative;
+    }
 
-        .nav-arrow {
-            position: absolute;
-            bottom: 10px;
-            width: 40px;
-            height: 40px;
-            background: transparent;
-            border: 2px solid #d94f4f;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: background 0.3s ease, transform 0.3s ease;
-        }
+    /* Flechas de navegación */
+    .nav-arrow {
+      position: absolute;
+      bottom: 2vh;
+      width: 2vw;
+      height: 2vw;
+      min-width: 15px;
+      min-height: 15px;
+      background: transparent;
+      border: 0.2vw solid #d94f4f;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
 
-        .nav-arrow::before {
-            content: '';
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-top: 2px solid #d94f4f;
-            border-right: 2px solid #d94f4f;
-            transform: rotate(45deg);
-        }
+    .nav-arrow::before {
+      content: '';
+      display: inline-block;
+      width: 1vw;
+      height: 1vw;
+      min-width: 5px;
+      min-height: 5px;
+      border-top: 0.2vw solid #d94f4f;
+      border-right: 0.2vw solid #d94f4f;
+      transform: rotate(45deg);
+    }
 
-        .nav-arrow.left {
-            left: 10px;
-        }
+    .nav-arrow.left {
+      left: 1vw;
+    }
 
-        .nav-arrow.left::before {
-            transform: rotate(-135deg);
-        }
+    .nav-arrow.left::before {
+      transform: rotate(-135deg);
+    }
 
-        .nav-arrow.right {
-            right: 10px;
-        }
+    .nav-arrow.right {
+      right: 1vw;
+    }
 
-        .nav-arrow:hover {
-            background: #d94f4f;
-            transform: scale(1.1);
-        }
+    .nav-arrow:hover {
+      background: #d94f4f;
+      transform: scale(1.1);
+    }
 
-        .nav-arrow:hover::before {
-            border-color: white;
-        }
+    .nav-arrow:hover::before {
+      border-color: white;
+    }
 
+    /* Sobre (envelope) */
+    .envelope {
+      position: relative;
+      width: 40vw;
+      max-width: 300px;
+      height: calc(40vw * 0.667); /* Relación 300x200 */
+      max-height: 200px;
+      background: #ff6b6b;
+      border: 0.2vw solid #d94f4f;
+      box-shadow: 0 2vw 3vw rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2;
+    }
 
-        .envelope {
-            position: relative;
-            width: 300px;
-            height: 200px;
-            background: #ff6b6b;
-            border: 2px solid #d94f4f;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.3);
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2;
-        }
+    .envelope .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #ff8787;
+      clip-path: polygon(0 0, 100% 0, 50% 50%);
+      z-index: 3;
+    }
 
-        .envelope .flap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #ff8787;
-            clip-path: polygon(0 0, 100% 0, 50% 50%);
-            z-index: 3;
-        }
+    .envelope.open .flap {
+      transform: rotate(180deg);
+      top: -101.25%;
+    }
 
-        .envelope.open .flap {
-            transform: rotate(180deg);
-            top: -202px;
-        }
+    /* Carta (letter) */
+    .letter {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 65vw;
+      max-width: 450px;
+      background: linear-gradient(145deg, #fffdf7, #f8f4e3);
+      padding: clamp(20px, 4vw, 30px);
+      border: 0.1vw solid #ddd;
+      box-shadow: 0 1vw 3vw rgba(0,0,0,0.4);
+      transition: transform 1s ease;
+      z-index: 4;
+    }
 
-        .letter {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            width: 450px;
-            background: #fffdf7;
-            padding: 30px;
-            border: 1px solid #ddd;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            transition: transform 1s ease;
-            z-index: 4;
-            background: linear-gradient(145deg, #fffdf7, #f8f4e3);
-        }
+    .letter.open {
+      transform: translate(-50%, -50%) scale(1);
+    }
 
-        .letter.open {
-            transform: translate(-50%, -50%) scale(1);
-        }
+    .letter h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2em;
+      color: #d94f4f;
+      text-align: center;
+      margin: 0 0 1em;
+    }
 
-        .letter h2 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2em;
-            color: #d94f4f;
-            text-align: center;
-        }
+    .page {
+      display: none;
+      font-size: 1.1em;
+      line-height: 1.6;
+      text-align: justify;
+    }
 
-        .page {
-            display: none;
-            font-size: 1.2em;
-            line-height: 1.6;
-            text-align: justify;
-        }
+    .page.active {
+      display: block;
+    }
 
-        .page.active {
-            display: block;
-        }
+    /* Controles de página y contador */
+    /* (Se reusa la clase .nav-arrow para las flechas, ya definidas arriba) */
 
-        .nav-arrow {
-            position: absolute;
-            bottom: 10px;
-            font-size: 24px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #d94f4f;
-        }
+    .page-counter {
+      text-align: center;
+      font-size: clamp(12px, 1.5vw, 14px);
+      color: #333;
+      margin-top: clamp(5px, 1vw, 10px);
+    }
 
-        .nav-arrow.left {
-            left: 10px;
-        }
+    /* Fotos decorativas */
+    .photo {
+      position: absolute;
+      background: white;
+      box-shadow: 0 1vw 2vw rgba(0,0,0,0.3);
+      border: clamp(5px, 1vw, 10px) solid white;
+      padding: clamp(5px, 0.5vw, 10px) clamp(5px, 0.5vw, 10px) clamp(20px, 2vw, 20px) clamp(5px, 0.5vw, 10px);
+      opacity: 0;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-        .nav-arrow.right {
-            right: 10px;
-        }
+    .photo img {
+      height: 28vh;
+      width: auto;
+      max-width: 100%;
+      max-height: 100%;
+    }
 
-        .page-counter {
-            text-align: center;
-            font-size: 14px;
-            color: #333;
-            margin-top: 10px;
-        }
+    /* Texto inicial */
+    #openText {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: clamp(30px, 5vw, 44px);
+      color: #d94f4f;
+      font-family: 'Great Vibes', cursive;
+      font-weight: bold;
+      transition: opacity 0.5s ease;
+      z-index: 5;
+    }
 
-        .photo {
-            position: absolute;
-            background: white;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            border: 10px solid white;
-            padding: 5px 5px 20px 5px;
-            opacity: 0;
-            transition: transform 0.5s ease, opacity 0.5s ease;
-            z-index: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .photo img {
-            height: 250px;
-            width: auto;
-            max-width: 100%;
-            max-height: 100%;
-        }
-
-        #openText {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 44px;
-            color: #d94f4f;
-            font-family: 'Great Vibes', cursive;
-            font-size: bold;
-            transition: opacity 0.5s ease;
-            z-index: 5;
-        }
-
-        #openText.fade-out {
-            opacity: 0;
-        }
-    </style>
+    #openText.fade-out {
+      opacity: 0;
+    }
+  </style>
 </head>
 <body>
-    <div id="openText">Ábreme</div>
+  <div id="openText">Ábreme</div>
 
-    <div class="envelope" id="envelope">
-        <div class="flap" id="flap"></div>
-        <div class="flap" id="interior"></div>
+  <div class="envelope" id="envelope">
+    <div class="flap" id="flap"></div>
+    <div class="flap" id="interior"></div>
+  </div>
+
+  <div class="letter" id="letter">
+    <h2>💌  Feliz San Valentín  💌</h2>
+    <div class="page active" id="page1">
+      <p>¡No te esperabas esto eh! <br><br>
+         Ya que el año pasado hice lo que ha sido hasta ahora el tráiler de Netflix de nuestra relación y como a una no le gusta ser repetitiva… quería hacer algo distinto para este año, que te sorprendiese y con un poquito de ayuda extraaaaa… Pues aquí está esta felicitación de San Valentín tan rechulona jejeje.<br><br>
+         Ya son cinco 14 de febrero que pasamos juntos y no te quiero ni decir los muchos que nos quedan aún por vivir. Y es posible que todo lo que vaya a decirte en esta felicitación te lo haya dicho ya mil veces (pero en esto no me importa ser repetitiva).
+      </p>
+    </div>
+    <div class="page" id="page2">
+      <p>La vida nos ha puesto muchos obstáculos en el camino, que de mejor o peor forma hemos sabido esquivar y aprender de ellos para no volver a caernos. Tropezarme con esos baches no me preocupa, porque para mí lo importante es que luego a la hora de levantarnos y motivarnos para seguir, lo hacemos juntos. Siento que ese es uno de los grandes pilares de nuestra relación, ese apoyo incondicional el uno por el otro. Y hablábamos recientemente (con esa cervecita en el Numancia), de las cosas que nos gustan y valoramos el uno del otro, y ambos coincidíamos en esa la primera.
+      </p>
+    </div>
+    <div class="page" id="page3">
+      <p>Ahora viene la parte de los agradecimientos, agárrate que vienen curvas y aquí me voy a explayar jajajaja.<br><br>
+         Gracias, por amarme tal y como soy, con este huracán de emociones que me desborda en ciertas ocasiones, pero que tú consigues transformar en una simple brisa con unas pocas palabras. <br><br>
+         Gracias, por la sinceridad y la confianza que nos tenemos. De ello seguimos aprendiendo o al menos unas cuantas lecciones nos conocemos, pero seguimos queriendo hacer por conocer y entender al otro.
+         <br><br>
+         Gracias, por sanar muchas cosas que tú no habías roto y que venían un poco defectuosas de fábrica cuando me conociste. Y como ya te dije en otra ocasión, puede que el esfuerzo por cambiarlas recaiga únicamente en mí, pero es tu hombro sobre el que lloro para desahogarme y son tus brazos los que me levantan cuando me derrumbo.
+      </p>
+    </div>
+    <div class="page" id="page4">
+      <p>Gracias, por esas risas que nos echamos hasta que nos duelen las mejillas de tanto sonreír, todas esas anécdotas e historias que solo nosotros entendemos.<br><br>
+         Gracias, por absolutamente todo. Y yo agradecida de que todo el amor que tenía entre mis manos y que quería dar a una persona especial haya merecido tanto la pena, porque no pierdo amor al dártelo todo, sino que siento que se multiplica junto con todo el amor que tú me das a mí también.
+         <br><br>Feliz San Valentín mi amor.
+         <br><br>Te quiero, te adoro, te necesito, te amo, te todo. ❤️ <br><br>
+      </p>
     </div>
 
-    <div class="letter" id="letter">
-        <h2>💌  Feliz San Valentín  💌</h2>
-        <div class="page active" id="page1">
-            <p>¡No te esperabas esto eh! <br><br>
-                Ya que el año pasado hice lo que ha sido hasta ahora el tráiler de Netflix de nuestra relación y como a una no le gusta ser repetitiva… quería hacer algo distinto para este año, que te sorprendiese y con un poquito de ayuda extraaaaa… Pues aquí está esta felicitación de San Valentín tan rechulona jejeje.<br><br>
-                Ya son cinco 14 de febrero que pasamos juntos y no te quiero ni decir los muchos que nos quedan aún por vivir. Y es posible que todo lo que vaya a decirte en esta felicitación te lo haya dicho ya mil veces (pero en esto no me importa ser repetitiva).</p>
-        </div>
-        <div class="page" id="page2">
-            <p> La vida nos ha puesto muchos obstáculos en el camino, que de mejor o peor forma hemos sabido esquivar y aprender de ellos para no volver a caernos. Tropezarme con esos baches no me preocupa, porque para mí lo importante es que luego a la hora de levantarnos y motivarnos para seguir, lo hacemos juntos. Siento que ese es uno de los grandes pilares de nuestra relación, ese apoyo incondicional el uno por el otro. Y hablábamos recientemente (con esa cervecita en el Numancia), de las cosas que nos gustan y valoramos el uno del otro, y ambos coincidíamos en esa la primera.</p>
-        </div>
-	   <div class="page" id="page3">
-            <p>Ahora viene la parte de los agradecimientos, agárrate que vienen curvas y aquí me voy a explayar jajajaja.<br><br>
-            Gracias, por amarme tal y como soy, con este huracán de emociones que me desborda en ciertas ocasiones, pero que tú consigues transformar en una simple brisa con unas pocas palabras. <br><br>
-            Gracias, por la sinceridad y la confianza que nos tenemos. De ello seguimos aprendiendo o al menos unas cuantas lecciones nos conocemos, pero seguimos queriendo hacer por conocer y entender al otro.<br><br>
-            Gracias, por sanar muchas cosas que tú no habías roto y que venían un poco defectuosas de fábrica cuando me conociste. Y como ya te dije en otra ocasión, puede que el esfuerzo por cambiarlas recaiga únicamente en mí, pero es tu hombro sobre el que lloro para desahogarme y son tus brazos los que me levantan cuando me derrumbo.</p>
-        </div>
-        <div class="page" id="page4">
-            <p>Gracias, por esas risas que nos echamos hasta que nos duelen las mejillas de tanto sonreír, todas esas anécdotas e historias que solo nosotros entendemos.<br><br>
-            Gracias, por absolutamente todo. Y yo agradecida de que todo el amor que tenía entre mis manos y que quería dar a una persona especial haya merecido tanto la pena, porque no pierdo amor al dártelo todo, sino que siento que se multiplica junto con todo el amor que tú me das a mí también.
-            <br><br>Feliz San Valentín mi amor.
-            <br><br>Te quiero, te adoro, te necesito, te amo, te todo. ❤️</p>
-        </div>
+    <button class="nav-arrow left" onclick="prevPage()"></button>
+    <button class="nav-arrow right" onclick="nextPage()"></button>
 
-        <button class="nav-arrow left" onclick="prevPage()"></button>
-        <button class="nav-arrow right" onclick="nextPage()"></button>
+    <div class="page-counter" id="pageCounter">1 / 4</div>
+  </div>
 
-        <div class="page-counter" id="pageCounter">1 / 4</div>
-    </div>
+  <!-- Fotos decorativas -->
+  <div class="photo" style="top: 10%; left: 15%; transform: rotate(-10deg);">
+    <img src="imagen1.jpg" alt="Foto 1">
+  </div>
+  <div class="photo" style="top: 10%; right: 15%; transform: rotate(12deg);">
+    <img src="imagen2.jpg" alt="Foto 2">
+  </div>
+  <div class="photo" style="top: 35%; left: 5%; transform: rotate(-15deg);">
+    <img src="imagen3.jpg" alt="Foto 3">
+  </div>
+  <div class="photo" style="top: 40%; right: 5%; transform: rotate(8deg);">
+    <img src="imagen4.jpg" alt="Foto 4">
+  </div>
+  <div class="photo" style="bottom: 10%; left: 15%; transform: rotate(-25deg);">
+    <img src="imagen5.jpg" alt="Foto 5">
+  </div>
+  <div class="photo" style="bottom: 10%; right: 15%; transform: rotate(10deg);">
+    <img src="imagen6.jpg" alt="Foto 6">
+  </div>
+  <div class="photo" style="bottom: 35%; left: 30%; transform: rotate(-8deg);">
+    <img src="imagen7.jpg" alt="Foto 7">
+  </div>
+  <div class="photo" style="bottom: 50%; right: 25%; transform: rotate(6deg);">
+    <img src="imagen8.jpg" alt="Foto 8">
+  </div>
 
-    <div class="photo" style="top: 10%; left: 15%; transform: rotate(-10deg);">
-            <img src="imagen1.jpg" alt="Foto 1">
-        </div>
-        <div class="photo" style="top: 10%; right: 15%; transform: rotate(12deg);">
-            <img src="imagen2.jpg" alt="Foto 2">
-        </div>
-        <div class="photo" style="top: 40%; left: 5%; transform: rotate(-15deg);">
-            <img src="imagen3.jpg" alt="Foto 3">
-        </div>
-        <div class="photo" style="top: 40%; right: 5%; transform: rotate(8deg);">
-            <img src="imagen4.jpg" alt="Foto 4">
-        </div>
-        <div class="photo" style="bottom: 10%; left: 15%; transform: rotate(-25deg);">
-            <img src="imagen5.jpg" alt="Foto 5">
-        </div>
-        <div class="photo" style="bottom: 10%; right: 15%; transform: rotate(10deg);">
-            <img src="imagen6.jpg" alt="Foto 6">
-        </div>
-        <div class="photo" style="bottom: 35%; left: 30%; transform: rotate(-8deg);">
-            <img src="imagen7.jpg" alt="Foto 7">
-        </div>
-        <div class="photo" style="bottom: 50%; right: 25%; transform: rotate(6deg);">
-            <img src="imagen8.jpg" alt="Foto 8">
-        </div>
+  <script>
+    let currentPage = 1;
+    const totalPages = document.querySelectorAll('.page').length;
 
+    document.getElementById('envelope').addEventListener('click', openEnvelope);
 
-    <script>
-        let currentPage = 1;
-        const totalPages = document.querySelectorAll('.page').length;
+    function openEnvelope() {
+      const envelope = document.getElementById('envelope');
+      const flap = document.getElementById('flap');
+      const letter = document.getElementById('letter');
+      const photos = document.querySelectorAll('.photo');
+      const openText = document.getElementById('openText');
 
-        document.getElementById('envelope').addEventListener('click', openEnvelope);
+      openText.classList.add('fade-out');
 
-        function openEnvelope() {
-            const envelope = document.getElementById('envelope');
-            const flap = document.getElementById('flap');
-            const letter = document.getElementById('letter');
-            const photos = document.querySelectorAll('.photo');
-            const openText = document.getElementById('openText');
+      setTimeout(() => {
+        openText.style.display = 'none';
 
-            openText.classList.add('fade-out');
+        envelope.classList.add('open');
+        flap.classList.add('open');
 
-            setTimeout(() => {
-                openText.style.display = 'none';
+        photos.forEach((photo, index) => {
+          setTimeout(() => {
+            photo.style.opacity = 1;
+            // Se ha cambiado la traslación de píxeles a unidades vw/vh para escalar en función del dispositivo
+            photo.style.transform = `translate(${(index % 2 === 0 ? -1 : 1) * 5}vw, ${(index - 2) * 3}vh) rotate(${(index % 2 === 0 ? -10 : 10)}deg)`;
+          }, index * 300);
+        });
 
-                envelope.classList.add('open');
-                flap.classList.add('open');
+        setTimeout(() => {
+          letter.classList.add('open');
+        }, photos.length * 300 + 500);
 
-                photos.forEach((photo, index) => {
-                    setTimeout(() => {
-                        photo.style.opacity = 1;
-                        photo.style.transform = `translate(${(index % 2 === 0 ? -1 : 1) * 100}px, ${(index - 2) * 30}px) rotate(${(index % 2 === 0 ? -1 : 1) * 10}deg)`;
-                    }, index * 300);
-                });
+      }, 500);
+    }
 
-                setTimeout(() => {
-                    letter.classList.add('open');
-                }, photos.length * 300 + 500);
+    function updatePage() {
+      document.querySelectorAll('.page').forEach((page, index) => {
+        page.classList.toggle('active', index === currentPage - 1);
+      });
+      document.getElementById('pageCounter').innerText = `${currentPage} / ${totalPages}`;
+    }
 
-            }, 500);
-        }
+    function nextPage() {
+      if (currentPage < totalPages) {
+        currentPage++;
+        updatePage();
+      }
+    }
 
-        function updatePage() {
-            document.querySelectorAll('.page').forEach((page, index) => {
-                page.classList.toggle('active', index === currentPage - 1);
-            });
-            document.getElementById('pageCounter').innerText = `${currentPage} / ${totalPages}`;
-        }
-
-        function nextPage() {
-            if (currentPage < totalPages) {
-                currentPage++;
-                updatePage();
-            }
-        }
-
-        function prevPage() {
-            if (currentPage > 1) {
-                currentPage--;
-                updatePage();
-            }
-        }
-    </script>
+    function prevPage() {
+      if (currentPage > 1) {
+        currentPage--;
+        updatePage();
+      }
+    }
+  </script>
 </body>
 </html>

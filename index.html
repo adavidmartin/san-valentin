@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Ti ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap" rel="stylesheet">
+    <title>Feliz San Valentín ❤️</title>
+
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
         body {
             background-color: #ffe4e1;
             display: flex;
@@ -13,10 +14,57 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Marryweather', serif;
             overflow: hidden;
             position: relative;
         }
+
+        .nav-arrow {
+            position: absolute;
+            bottom: 10px;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 2px solid #d94f4f;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-arrow::before {
+            content: '';
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-top: 2px solid #d94f4f;
+            border-right: 2px solid #d94f4f;
+            transform: rotate(45deg);
+        }
+
+        .nav-arrow.left {
+            left: 10px;
+        }
+
+        .nav-arrow.left::before {
+            transform: rotate(-135deg);
+        }
+
+        .nav-arrow.right {
+            right: 10px;
+        }
+
+        .nav-arrow:hover {
+            background: #d94f4f;
+            transform: scale(1.1);
+        }
+
+        .nav-arrow:hover::before {
+            border-color: white;
+        }
+
 
         .envelope {
             position: relative;
@@ -46,7 +94,7 @@
 
         .envelope.open .flap {
             transform: rotate(180deg);
-            top: -201px;
+            top: -202px;
         }
 
         .letter {
@@ -61,7 +109,7 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             transition: transform 1s ease;
             z-index: 4;
-            background: linear-gradient(145deg, #fcf6d9, #f8f4e3);
+            background: linear-gradient(145deg, #fffdf7, #f8f4e3);
         }
 
         .letter.open {
@@ -77,8 +125,9 @@
 
         .page {
             display: none;
-            font-size: 1.1em;
+            font-size: 1.2em;
             line-height: 1.6;
+            text-align: justify;
         }
 
         .page.active {
@@ -125,54 +174,92 @@
         }
 
         .photo img {
-            height: 200px;
+            height: 250px;
             width: auto;
             max-width: 100%;
             max-height: 100%;
         }
+
+        #openText {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 44px;
+            color: #d94f4f;
+            font-family: 'Great Vibes', cursive;
+            font-size: bold;
+            transition: opacity 0.5s ease;
+            z-index: 5;
+        }
+
+        #openText.fade-out {
+            opacity: 0;
+        }
     </style>
 </head>
 <body>
+    <div id="openText">Ábreme</div>
+
     <div class="envelope" id="envelope">
         <div class="flap" id="flap"></div>
+        <div class="flap" id="interior"></div>
     </div>
 
     <div class="letter" id="letter">
-        <h2>💌 Para Ti 💌</h2>
+        <h2>💌  Feliz San Valentín  💌</h2>
         <div class="page active" id="page1">
-            <p>Esta es la primera página de tu carta especial. ❤️ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tortor nibh, tincidunt id commodo ut, consequat nec orci. Pellentesque est nisl, semper quis suscipit non, fringilla ac magna. Pellentesque vel purus ac dui blandit eleifend sollicitudin lacinia dolor. Vestibulum nec eleifend metus. Etiam id magna at ex hendrerit tempor. Nam quis ultricies sem, eu placerat dolor. Aliquam lobortis leo id bibendum commodo. Proin in odio eleifend, porttitor ligula volutpat, pharetra metus. Mauris at porttitor leo. Donec augue lorem, aliquet in est sit amet, dapibus commodo dui. Suspendisse potenti. Quisque semper nisl non massa molestie, non pellentesque tortor condimentum. Quisque et tortor nunc. Nam id luctus metus, sed lobortis elit.</p>
+            <p>¡No te esperabas esto eh! <br><br>
+                Ya que el año pasado hice lo que ha sido hasta ahora el tráiler de Netflix de nuestra relación y como a una no le gusta ser repetitiva… quería hacer algo distinto para este año, que te sorprendiese y con un poquito de ayuda extraaaaa… Pues aquí está esta felicitación de San Valentín tan rechulona jejeje.<br><br>
+                Ya son cinco 14 de febrero que pasamos juntos y no te quiero ni decir los muchos que nos quedan aún por vivir. Y es posible que todo lo que vaya a decirte en esta felicitación te lo haya dicho ya mil veces (pero en esto no me importa ser repetitiva).</p>
         </div>
         <div class="page" id="page2">
-            <p>Esta es la segunda página, llena de amor y recuerdos. 🌹 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tortor nibh, tincidunt id commodo ut, consequat nec orci. Pellentesque est nisl, semper quis suscipit non, fringilla ac magna. Pellentesque vel purus ac dui blandit eleifend sollicitudin lacinia dolor. Vestibulum nec eleifend metus. Etiam id magna at ex hendrerit tempor. Nam quis ultricies sem, eu placerat dolor. Aliquam lobortis leo id bibendum commodo. Proin in odio eleifend, porttitor ligula volutpat, pharetra metus. Mauris at porttitor leo. Donec augue lorem, aliquet in est sit amet, dapibus commodo dui. Suspendisse potenti. Quisque semper nisl non massa molestie, non pellentesque tortor condimentum. Quisque et tortor nunc. Nam id luctus metus, sed lobortis elit.</p>
+            <p> La vida nos ha puesto muchos obstáculos en el camino, que de mejor o peor forma hemos sabido esquivar y aprender de ellos para no volver a caernos. Tropezarme con esos baches no me preocupa, porque para mí lo importante es que luego a la hora de levantarnos y motivarnos para seguir, lo hacemos juntos. Siento que ese es uno de los grandes pilares de nuestra relación, ese apoyo incondicional el uno por el otro. Y hablábamos recientemente (con esa cervecita en el Numancia), de las cosas que nos gustan y valoramos el uno del otro, y ambos coincidíamos en esa la primera.</p>
         </div>
-	<div class="page" id="page3">
-            <p>Esta es la tercera página, llena de amor y recuerdos. 🌹 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tortor nibh, tincidunt id commodo ut, consequat nec orci. Pellentesque est nisl, semper quis suscipit non, fringilla ac magna. Pellentesque vel purus ac dui blandit eleifend sollicitudin lacinia dolor. Vestibulum nec eleifend metus. Etiam id magna at ex hendrerit tempor. Nam quis ultricies sem, eu placerat dolor. Aliquam lobortis leo id bibendum commodo. Proin in odio eleifend, porttitor ligula volutpat, pharetra metus. Mauris at porttitor leo. Donec augue lorem, aliquet in est sit amet, dapibus commodo dui. Suspendisse potenti. Quisque semper nisl non massa molestie, non pellentesque tortor condimentum. Quisque et tortor nunc. Nam id luctus metus, sed lobortis elit.</p>
+	   <div class="page" id="page3">
+            <p>Ahora viene la parte de los agradecimientos, agárrate que vienen curvas y aquí me voy a explayar jajajaja.<br><br>
+            Gracias, por amarme tal y como soy, con este huracán de emociones que me desborda en ciertas ocasiones, pero que tú consigues transformar en una simple brisa con unas pocas palabras. <br><br>
+            Gracias, por la sinceridad y la confianza que nos tenemos. De ello seguimos aprendiendo o al menos unas cuantas lecciones nos conocemos, pero seguimos queriendo hacer por conocer y entender al otro.<br><br>
+            Gracias, por sanar muchas cosas que tú no habías roto y que venían un poco defectuosas de fábrica cuando me conociste. Y como ya te dije en otra ocasión, puede que el esfuerzo por cambiarlas recaiga únicamente en mí, pero es tu hombro sobre el que lloro para desahogarme y son tus brazos los que me levantan cuando me derrumbo.</p>
+        </div>
+        <div class="page" id="page4">
+            <p>Gracias, por esas risas que nos echamos hasta que nos duelen las mejillas de tanto sonreír, todas esas anécdotas e historias que solo nosotros entendemos.<br><br>
+            Gracias, por absolutamente todo. Y yo agradecida de que todo el amor que tenía entre mis manos y que quería dar a una persona especial haya merecido tanto la pena, porque no pierdo amor al dártelo todo, sino que siento que se multiplica junto con todo el amor que tú me das a mí también.
+            <br><br>Feliz San Valentín mi amor.
+            <br><br>Te quiero, te adoro, te necesito, te amo, te todo. ❤️</p>
         </div>
 
-        <button class="nav-arrow left" onclick="prevPage()">⬅️</button>
-        <button class="nav-arrow right" onclick="nextPage()">➡️</button>
+        <button class="nav-arrow left" onclick="prevPage()"></button>
+        <button class="nav-arrow right" onclick="nextPage()"></button>
 
-        <div class="page-counter" id="pageCounter">1 / 3</div>
+        <div class="page-counter" id="pageCounter">1 / 4</div>
     </div>
 
     <div class="photo" style="top: 10%; left: 15%; transform: rotate(-10deg);">
-        <img src="imagen1.jpg" alt="Foto 1">
-    </div>
-    <div class="photo" style="top: 10%; right: 15%; transform: rotate(12deg);">
-        <img src="imagen2.jpg" alt="Foto 2">
-    </div>
-    <div class="photo" style="top: 40%; left: 5%; transform: rotate(-15deg);">
-        <img src="imagen3.jpg" alt="Foto 3">
-    </div>
-    <div class="photo" style="top: 40%; right: 5%; transform: rotate(8deg);">
-        <img src="imagen4.jpg" alt="Foto 4">
-    </div>
-    <div class="photo" style="bottom: 10%; left: 20%; transform: rotate(-5deg);">
-        <img src="imagen5.jpg" alt="Foto 5">
-    </div>
-    <div class="photo" style="bottom: 10%; right: 20%; transform: rotate(10deg);">
-        <img src="imagen6.jpg" alt="Foto 6">
-    </div>
+            <img src="imagen1.jpg" alt="Foto 1">
+        </div>
+        <div class="photo" style="top: 10%; right: 15%; transform: rotate(12deg);">
+            <img src="imagen2.jpg" alt="Foto 2">
+        </div>
+        <div class="photo" style="top: 40%; left: 5%; transform: rotate(-15deg);">
+            <img src="imagen3.jpg" alt="Foto 3">
+        </div>
+        <div class="photo" style="top: 40%; right: 5%; transform: rotate(8deg);">
+            <img src="imagen4.jpg" alt="Foto 4">
+        </div>
+        <div class="photo" style="bottom: 10%; left: 15%; transform: rotate(-25deg);">
+            <img src="imagen5.jpg" alt="Foto 5">
+        </div>
+        <div class="photo" style="bottom: 10%; right: 15%; transform: rotate(10deg);">
+            <img src="imagen6.jpg" alt="Foto 6">
+        </div>
+        <div class="photo" style="bottom: 35%; left: 30%; transform: rotate(-8deg);">
+            <img src="imagen7.jpg" alt="Foto 7">
+        </div>
+        <div class="photo" style="bottom: 50%; right: 25%; transform: rotate(6deg);">
+            <img src="imagen8.jpg" alt="Foto 8">
+        </div>
+
 
     <script>
         let currentPage = 1;
@@ -185,20 +272,28 @@
             const flap = document.getElementById('flap');
             const letter = document.getElementById('letter');
             const photos = document.querySelectorAll('.photo');
+            const openText = document.getElementById('openText');
 
-            envelope.classList.add('open');
-            flap.classList.add('open');
-
-            photos.forEach((photo, index) => {
-                setTimeout(() => {
-                    photo.style.opacity = 1;
-                    photo.style.transform = `translate(${(index % 2 === 0 ? -1 : 1) * 100}px, ${(index - 2) * 30}px) rotate(${(index % 2 === 0 ? -1 : 1) * 10}deg)`;
-                }, index * 300);
-            });
+            openText.classList.add('fade-out');
 
             setTimeout(() => {
-                letter.classList.add('open');
-            }, photos.length * 300 + 500);
+                openText.style.display = 'none';
+
+                envelope.classList.add('open');
+                flap.classList.add('open');
+
+                photos.forEach((photo, index) => {
+                    setTimeout(() => {
+                        photo.style.opacity = 1;
+                        photo.style.transform = `translate(${(index % 2 === 0 ? -1 : 1) * 100}px, ${(index - 2) * 30}px) rotate(${(index % 2 === 0 ? -1 : 1) * 10}deg)`;
+                    }, index * 300);
+                });
+
+                setTimeout(() => {
+                    letter.classList.add('open');
+                }, photos.length * 300 + 500);
+
+            }, 500);
         }
 
         function updatePage() {
